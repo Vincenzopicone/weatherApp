@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  font-family: Josefin Sans;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url(./img/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.App{
+  height: 100vh;
+}
+
+.cardWeather {
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 10px 10px 10px lightgray;
+  cursor: pointer;
+}
+
+.cardFuture {
+  width: 200px;
+}
+
+
+.description {
+    text-transform: uppercase;
+}
