@@ -1,5 +1,3 @@
-/* import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card'; */
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Container, Col, Row } from "react-bootstrap";
