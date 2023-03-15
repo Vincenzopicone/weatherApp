@@ -3,14 +3,11 @@ body {
   font-family: Josefin Sans;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(./img/bg.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-
+  background: linear-gradient(blue, darkblue);
+  height: 100vh;
 }
 
-.App{
-  height: 100vh;
+.App {
 }
 
 .cardWeather {
@@ -24,7 +21,6 @@ body {
   width: 200px;
 }
 
-
 .description {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
