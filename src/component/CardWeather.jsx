@@ -1,8 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Container, Col, Row } from "react-bootstrap";
+import moment from "moment";
 
 function CardWeather() {
+  moment("it");
   const dispatch = useDispatch();
   const currentCityName = useSelector((city) => city.name);
   const currentCountry = useSelector((country) => country.country);
@@ -37,53 +39,65 @@ function CardWeather() {
 
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center p-0">
-      <Row md={8} className="flex-column align-items-start mb-4">
-        <Col md={12} className="text-center">
-          <h1 className="cardWeather bg-secondary text-light p-2">
-            <strong>
-              {currentCityName}, {currentCountry.country}{" "}
-            </strong>
-          </h1>
+      <Row className="my-2">
+        <Col xs={6} className="text-center">
+          <h2 className="cardWeather fw-bold text-uppercase text-light p-2">
+            {currentCityName}, {currentCountry.country}{" "}
+          </h2>
+          <h6 className="text-light text-uppercase fst-italic">
+            {currentWeather.description} <span></span>
+          </h6>
         </Col>
-        <Col md={12} className="text-center uppercase">
-          <h3 className="cardWeather  bg-secondary text-light description px-3 m-3">
-            {currentWeather.description}{" "}
-            <span>
-              <img
-                src={`http://openweathermap.org/img/wn/${currentWeather.icon}@2x.png`}
-                alt="CurrentIcon"
-              />
-            </span>
-          </h3>
+        <Col
+          xs={3}
+          className="text-light text-uppercase text-center d-flex align-items-center"
+        >
+          <h2>{currentTemp?.temp?.toPrecision(2)}°</h2>
+        </Col>
+        <Col xs={3}>
+          <img
+            className="img-fluid"
+            src={`http://openweathermap.org/img/wn/${currentWeather.icon}@2x.png`}
+            alt="CurrentIcon"
+          />
         </Col>
       </Row>
-      <Row className="d-flex justify-content-center w-100">
-        <Col
-          md={3}
-          className="cardWeather  p-2 mx-3 my-2 d-flex flex-column justify-content-center align-items-center"
-        >
-          <h5> Attuale:</h5>
-          <h3>{currentTemp?.temp?.toPrecision(2)}°</h3>
-          <h5> Percepita:</h5>
-          <h3>{currentTemp?.feels_like?.toPrecision(2)}°</h3>
+      <Row className="text-light text-center">
+        <Col xs={6}>
+          <div> MIN: {currentTemp?.temp_min?.toPrecision(2)}°</div>
         </Col>
-        <Col
-          md={3}
-          className="cardWeather  p-2  mx-3 my-2  d-flex flex-column justify-content-center align-items-center"
-        >
-          <h5> Min:</h5>
-          <h3>{currentTemp?.temp_min?.toPrecision(2)}°</h3>
-          <h5> MAX:</h5>
-          <h3>{currentTemp?.temp_max?.toPrecision(2)}°</h3>
+        <Col xs={6}>
+          <div> MAX: {currentTemp?.temp_max?.toPrecision(2)}°</div>
         </Col>
-        <Col
-          md={3}
-          className="cardWeather  p-2 mx-3 my-2  d-flex flex-column justify-content-center align-items-center"
-        >
+      </Row>
+      {/* <Row className="text-light">
+        <Col xs={6} className="text-end">
+          <h5> ALBA:{moment.utc(currentCountry.sunrise).format("HH:mm")}</h5>
+        </Col>
+        <Col xs={6}>
+          <h5>
+            {" "}
+            TRAMONTO:
+            {moment.utc(parseInt(currentCountry.sunset)).format("HH:mm")}
+          </h5>
+        </Col>
+      </Row> */}
+      <Row className="d-flex justify-content-around text-center mt-3 text-light">
+        <Col xs={5} className="border border-tertiary rounded py-3 m-1">
+          <h5 className=""> Percepita</h5>
+          <h3> {currentTemp?.feels_like?.toPrecision(2)}°</h3>
+        </Col>
+        <Col xs={5} className="border border-tertiary rounded py-3 m-1">
           <h5> Vento</h5>
           <h3>{currentWind.speed} km/h</h3>
+        </Col>
+        <Col xs={5} className="border border-tertiary rounded py-3 m-1">
           <h5> Pressione</h5>
           <h3>{currentTemp.pressure} hPa</h3>
+        </Col>
+        <Col xs={5} className="border border-tertiary rounded py-3 m-1">
+          <h5> Umidità</h5>
+          <h3>{currentTemp.humidity} hPa</h3>
         </Col>
       </Row>
     </Container>

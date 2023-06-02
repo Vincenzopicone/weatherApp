@@ -1,4 +1,4 @@
-import { Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import CardWeather from "./CardWeather";
 import Next5Days from "./Next5Days";
@@ -18,27 +18,42 @@ const Gallery = () => {
   };
 
   return (
-    <Container className="p-5">
+    <Container fluid>
+      <Row className="sticky-top text-center bg-light">
+        <h1>WeatherApp</h1>
+      </Row>
       <Row className="d-flex justify-content-center my-4">
-        <Form className="w-50" onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Control
-              type="search"
-              placeholder="Inserisci la città"
-              /* value={} */ onChange={(e) =>
-                handleChange(
-                  dispatch({ type: "SEARCH", payload: e.target.value })
-                )
-              }
-            />
-          </Form.Group>
-        </Form>
+        <Col
+          xs={12}
+          sm={9}
+          md={6}
+          lg={4}
+          className="d-flex justify-content-center"
+        >
+          <Form className="w-50" onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Control
+                className="rounded-pill text-center"
+                type="search"
+                placeholder="Inserisci la città"
+                onChange={(e) =>
+                  handleChange(
+                    dispatch({ type: "SEARCH", payload: e.target.value })
+                  )
+                }
+              />
+            </Form.Group>
+          </Form>
+        </Col>
       </Row>
 
-      <Container className="d-flex flex-column justify-content-center align-item-center m-0 p-0">
-        <CardWeather md={6} />
-        <Next5Days md={6} />
-      </Container>
+      <Row className="d-flex flex-column justify-content-center align-items-center m-0 p-0">
+        <CardWeather />
+      </Row>
+      <Row className="d-flex flex-wrap justify-content-center align-items-center text-center text-light">
+        <h2 className="my-3">Prossimi 5 giorni</h2>
+        <Next5Days />
+      </Row>
     </Container>
   );
 };
